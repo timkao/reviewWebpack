@@ -12,7 +12,7 @@ server.on('request', app);
 
 var io = socketio(server);
 
-var DataStore = [];
+var inMemoryDrawHistory = [];
 
 server.listen(1337, function () {
   console.log('The server is listening on port 1337!');
@@ -21,18 +21,16 @@ server.listen(1337, function () {
 app.use(express.static(path.join(__dirname, 'browser')));
 
 app.get('*', function (req, res) {
-  console.log(req.url)
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 io.on('connection', function (socket) {
-  console.log('client connected');
-  console.log(socket.id);
+  console.log(socket.id, ' connected');
 
-  socket.emit('load', DataStore);
+  socket.emit('load', inMemoryDrawHistory);
 
   socket.on('draw', function (start, end, color) {
-    DataStore.push({ start, end, color });
+    inMemoryDrawHistory.push({ start, end, color });
     socket.broadcast.emit('draw', start, end, color);
   });
 

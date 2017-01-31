@@ -1,6 +1,7 @@
 (function () {
+
   var whiteboard = window.whiteboard;
-  var socket = io(window.location.origin);
+  var socket = window.io(window.location.origin);
 
   socket.on('connect', function () {
     console.log('Connected!');
