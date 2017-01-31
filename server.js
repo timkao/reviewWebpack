@@ -30,7 +30,11 @@ io.on('connection', function (socket) {
   socket.emit('load', inMemoryDrawHistory);
 
   socket.on('draw', function (start, end, color) {
-    inMemoryDrawHistory.push({ start, end, color });
+    inMemoryDrawHistory.push({
+      start: start,
+      end: end,
+      color: color
+    });
     socket.broadcast.emit('draw', start, end, color);
   });
 

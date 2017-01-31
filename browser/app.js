@@ -10,7 +10,9 @@
   socket.on('load', function (strokes) {
 
     strokes.forEach(function (stroke) {
-      var { start, end, color } = stroke;
+      var start = stroke.start;
+      var end = stroke.end;
+      var color = stroke.color;
       whiteboard.draw(start, end, color, false);
     });
 
