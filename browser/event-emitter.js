@@ -1,15 +1,15 @@
-(function () {
+class EventEmitter {
 
-  window.EventEmitter = EventEmitter;
+  //window.EventEmitter = EventEmitter;
 
   // our EventEmitter contructor function
-  function EventEmitter () {
+  constructor () {
     this.subscribers = {};
   }
 
   // To be used like:
   // instanceOfEE.on('touchdown', cheerFn);
-  EventEmitter.prototype.on = function (eventName, eventListener) {
+  on (eventName, eventListener) {
 
     // If this instance's subscribers object does not yet
     // have the key matching the given event name, create the
@@ -22,11 +22,11 @@
     // located on the instance's subscribers object.
     this.subscribers[eventName].push(eventListener);
 
-  };
+  }
 
   // To be used like:
   // instanceOfEE.emit('codec', 'Hey Snake, Otacon is calling!');
-  EventEmitter.prototype.emit = function (eventName) {
+  emit (eventName) {
 
     // If there are no subscribers to this event name, why even?
     if (!this.subscribers[eventName]) {
@@ -41,5 +41,7 @@
         listener.apply(null, remainingArgs);
     });
 
-  };
-})();
+  }
+}
+
+module.exports = EventEmitter;
