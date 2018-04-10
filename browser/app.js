@@ -1,7 +1,5 @@
-const whiteboard = require('./whiteboard');
-const io = require('socket.io-client');
-
-function app () {
+import whiteboard from './whiteboard';
+import io from 'socket.io-client';
 
   //var whiteboard = window.whiteboard;
   var socket = io(window.location.origin);
@@ -29,6 +27,3 @@ function app () {
     socket.emit('draw', start, end, color);
   });
 
-}
-
-app();

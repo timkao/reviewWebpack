@@ -1,4 +1,4 @@
-const EventEmitter = require('./event-emitter');
+import EventEmitter from './event-emitter';
 
 
 
@@ -118,4 +118,4 @@ const EventEmitter = require('./event-emitter');
 
 
 
-module.exports = whiteboard;
+export default whiteboard;
